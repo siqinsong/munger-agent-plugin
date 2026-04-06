@@ -1,0 +1,9 @@
+.DS_Store
+.env
+node_modules
+
+# Large local reference materials not needed for deploy
+*.pdf
+*.png
+Munger thinking mindset/
+Charlie_Munger_Thinking_Models_Complete_Extraction.md

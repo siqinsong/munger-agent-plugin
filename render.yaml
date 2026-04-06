@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: munger-mindset-web
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 24
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        value: 10000
+      - key: OPENAI_MODEL
+        value: gpt-5.4
+      - key: OPENAI_API_KEY
+        sync: false

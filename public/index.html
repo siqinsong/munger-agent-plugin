@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>芒格思维对话室</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div id="loginModal" class="login-modal hidden" aria-hidden="true">
+      <div class="login-card">
+        <p class="eyebrow">Remote Access</p>
+        <h2>登录你的 API Key</h2>
+        <p class="login-copy">
+          这个版本支持远程访问。若服务端没有共享 key，你可以输入自己的 OpenAI API Key 后直接使用。
+        </p>
+
+        <form id="loginForm" class="login-form">
+          <label class="sr-only" for="apiKeyInput">OpenAI API Key</label>
+          <input
+            id="apiKeyInput"
+            name="apiKey"
+            type="password"
+            placeholder="sk-..."
+            autocomplete="off"
+            required
+          />
+          <div class="login-actions">
+            <button id="saveKeyBtn" class="send-btn" type="submit">登录并保存</button>
+            <button id="skipLoginBtn" class="ghost-btn" type="button">如果服务端已配置共享 Key，直接进入</button>
+          </div>
+          <p id="loginStatus" class="status-text">
+            API Key 仅保存在当前浏览器的本地存储中，不写入这个项目文件。
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <div class="page-shell">
+      <aside class="hero-panel">
+        <div class="hero-copy">
+          <p class="eyebrow">Munger Thinking Agent</p>
+          <h1>把问题交给模型，用芒格的框架想一遍。</h1>
+          <p class="intro">
+            这个网页会把你的问题发送给模型，并要求它按照“逆向思考、多元模型、心理偏误、能力圈”的方式回答。
+          </p>
+        </div>
+
+        <div class="principles">
+          <div class="principle-card">
+            <span>01</span>
+            <strong>先想怎么失败</strong>
+            <p>优先识别最可能的失败路径，而不是急着追求聪明答案。</p>
+          </div>
+          <div class="principle-card">
+            <span>02</span>
+            <strong>跨学科判断</strong>
+            <p>从激励、概率、复利、供需与适应性多个角度看问题。</p>
+          </div>
+          <div class="principle-card">
+            <span>03</span>
+            <strong>识别心理偏误</strong>
+            <p>检查确认偏差、损失厌恶、从众、沉没成本和过度自信。</p>
+          </div>
+        </div>
+      </aside>
+
+      <main class="chat-panel">
+        <section class="toolbar">
+          <div>
+            <p class="eyebrow">Interactive Web</p>
+            <h2>芒格思维问答</h2>
+            <p id="modelBadge" class="toolbar-meta">正在读取服务配置...</p>
+          </div>
+          <div class="toolbar-actions">
+            <button id="manageKeyBtn" class="ghost-btn" type="button">登录 / 更换 Key</button>
+            <button id="logoutBtn" class="ghost-btn" type="button">退出登录</button>
+            <button id="resetBtn" class="ghost-btn" type="button">清空对话</button>
+          </div>
+        </section>
+
+        <section class="examples">
+          <button class="example-chip" type="button" data-prompt="我在考虑从大厂离职去创业，该不该？">离职创业</button>
+          <button class="example-chip" type="button" data-prompt="现在买一套自住房，对我来说是不是理性决策？">买房决策</button>
+          <button class="example-chip" type="button" data-prompt="我想分析一家消费品牌公司，如何判断它有没有护城河？">护城河分析</button>
+        </section>
+
+        <section id="messages" class="messages" aria-live="polite">
+          <article class="message assistant">
+            <div class="message-label">芒格思维助手</div>
+            <div class="message-body">
+              先把你的问题说清楚。越具体，回答越有穿透力。
+            </div>
+          </article>
+        </section>
+
+        <form id="chatForm" class="composer">
+          <label class="sr-only" for="questionInput">输入你的问题</label>
+          <textarea
+            id="questionInput"
+            name="question"
+            rows="4"
+            placeholder="例如：我在考虑是否接受一个高薪但成长性一般的新工作，请用芒格思维帮我分析。"
+            required
+          ></textarea>
+          <div class="composer-footer">
+            <p id="statusText" class="status-text">你可以使用服务端共享 Key，或先在页面中登录你自己的 Key。</p>
+            <button id="sendBtn" class="send-btn" type="submit">开始分析</button>
+          </div>
+        </form>
+      </main>
+    </div>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+  </html>
